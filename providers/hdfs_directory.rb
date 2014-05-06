@@ -17,6 +17,7 @@
 # limitations under the License.
 #
 
+# NOTES:
 # $ hdfs dfs -ls /tmp/chef-hello.txt
 # Found 1 items
 # -rw-r--r--   2 hdfs supergroup         45 2014-01-16 22:53 /tmp/chef-hello.txt
@@ -28,3 +29,7 @@
 # 1
 # $ hdfs dfs -ls / | grep tmp
 # drwxrwxrwt   - hdfs  supergroup          0 2014-04-01 20:39 /tmp
+
+# http://docs.opscode.com/resource_directory.html
+# Actions: :create :delete
+# Attributes: group mode owner path(defaults to name) recursive
