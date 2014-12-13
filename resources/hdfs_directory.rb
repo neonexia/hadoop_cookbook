@@ -2,7 +2,7 @@
 # Cookbook Name:: hadoop
 # Resource:: hdfs_directory
 #
-# Copyright (C) 2014 Continuuity, Inc.
+# Copyright © 2014 Cask Data, Inc.
 # 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,3 +17,11 @@
 # limitations under the License.
 #
 
+actions :create, :delete
+default_action :create
+
+attribute :path,      :kind_of => String,         :default => nil,    :name_attribute => true
+attribute :owner,     :kind_of => String,         :default => 'hdfs'
+attribute :group,     :kind_of => String,         :default => 'hdfs'
+attribute :mode,      :kind_of => String,         :default => '0755'
+attribute :recursive, :equal_to => [true, false], :default => false
