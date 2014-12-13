@@ -1,13 +1,16 @@
 source 'https://rubygems.org'
 
-gem 'berkshelf'
-gem 'thor-foodcritic'
+gem 'berkshelf', '~> 3.0'
+gem 'foodcritic', '~> 3.0'
 
-group :development do
+gem 'chefspec', '~> 4.0'
+gem 'rspec', '~> 3.0'
+
+gem 'rubocop'
+gem 'rubocop-checkstyle_formatter', require: false
+gem 'rainbow', '<= 1.99.1'
+
+group :integration do
   gem 'test-kitchen'
   gem 'kitchen-vagrant'
-  gem 'guard'
-  gem 'guard-kitchen'
-  gem 'foodcritic'
-  gem 'guard-foodcritic'
 end
