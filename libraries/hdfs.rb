@@ -103,12 +103,12 @@ module Hadoop
 
     # Get permissions from an HDFS path
     #
-    # @result Integer
+    # @result String
     def hdfs_perms(path)
       if Hadoop::Hdfs.directory?(path)
         cmd = "hdfs dfs -ls #{::File.dirname(path)} | grep #{::File.basename(path)} | awk '{print $1}'".chomp
       elsif Hadoop::Hdfs.file?(path)
-        cmd = "hdfs dfs -ls #{path}".chomp
+        cmd = "hdfs dfs -ls #{path} | awk '{print $1}'".chomp
       else
         Chef::Application.fatal!("Cannot get permissions for #{path}")
       end
