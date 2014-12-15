@@ -43,7 +43,7 @@ module Hadoop
       cmd = "hdfs dfs -test -d #{path}"
       mso = Mixlib::ShellOut.new(cmd)
       mso.run_command
-      Chef::Log.debug("Hadoop::Hdfs.exist? #{path}")
+      Chef::Log.debug("Hadoop::Hdfs.directory? #{path}")
       begin
         cmd.error!
         true
@@ -59,13 +59,46 @@ module Hadoop
       cmd = "hdfs dfs -test -f #{path}"
       mso = Mixlib::ShellOut.new(cmd)
       mso.run_command
-      Chef::Log.debug("Hadoop::Hdfs.exist? #{path}")
+      Chef::Log.debug("Hadoop::Hdfs.file? #{path}")
       begin
         cmd.error!
         true
       rescue
         false
       end
+    end
+
+    # Change group of an HDFS path
+    #
+    # @result Boolean
+    def chgrp(path, group, recursive = false)
+      opts = '-R ' if recursive
+      cmd = "hdfs dfs -chgrp #{opts}#{group} #{path}"
+      mso = Mixlib::ShellOut.new(cmd)
+      mso.run_command
+      Chef::Log.debug("Hadoop::Hdfs.chgrp #{group} #{path}")
+    end
+
+    # Change owner of an HDFS path
+    #
+    # @result Boolean
+    def chown(path, owner, recursive = false)
+      opts = '-R ' if recursive
+      cmd = "hdfs dfs -chown #{opts}#{owner} #{path}"
+      mso = Mixlib::ShellOut.new(cmd)
+      mso.run_command
+      Chef::Log.debug("Hadoop::Hdfs.chown #{owner} #{path}")
+    end
+
+    # Change mode of an HDFS path
+    #
+    # @result Boolean
+    def chmod(path, mode, recursive = false)
+      opts = '-R ' if recursive
+      cmd = "hdfs dfs -chmod #{opts}#{mode} #{path}"
+      mso = Mixlib::ShellOut.new(cmd)
+      mso.run_command
+      Chef::Log.debug("Hadoop::Hdfs.chmod #{mode} #{path}")
     end
   end
 end
