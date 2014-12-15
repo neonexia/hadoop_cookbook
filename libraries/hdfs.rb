@@ -29,7 +29,7 @@ module Hadoop
       mso.run_command
       Chef::Log.debug("Hadoop::Hdfs.exist? #{path}")
       begin
-        cmd.error!
+        mso.error!
         true
       rescue
         false
@@ -45,7 +45,7 @@ module Hadoop
       mso.run_command
       Chef::Log.debug("Hadoop::Hdfs.directory? #{path}")
       begin
-        cmd.error!
+        mso.error!
         true
       rescue
         false
@@ -61,7 +61,7 @@ module Hadoop
       mso.run_command
       Chef::Log.debug("Hadoop::Hdfs.file? #{path}")
       begin
-        cmd.error!
+        mso.error!
         true
       rescue
         false
