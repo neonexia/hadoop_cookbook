@@ -100,5 +100,21 @@ module Hadoop
       mso.run_command
       Chef::Log.debug("Hadoop::Hdfs.chmod #{mode} #{path}")
     end
+
+    # Get permissions from an HDFS path
+    #
+    # @result Integer
+    def hdfs_perms(path)
+      if Hadoop::Hdfs.directory?(path)
+        cmd = "hdfs dfs -ls #{::File.dirname(path)} | grep #{::File.basename(path)} | awk '{print $1}'".chomp
+      elsif Hadoop::Hdfs.file?(path)
+        cmd = "hdfs dfs -ls #{path}".chomp
+      else
+        Chef::Application.fatal!("Cannot get permissions for #{path}")
+      end
+      mso = Mixlib::ShellOut.new(cmd)
+      mso.run_command
+      mso.stdout
+    end
   end
 end
