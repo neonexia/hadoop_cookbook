@@ -24,4 +24,5 @@ attribute :path,      :kind_of => String,         :default => nil,    :name_attr
 attribute :owner,     :kind_of => String,         :default => 'hdfs'
 attribute :group,     :kind_of => String,         :default => 'hdfs'
 attribute :mode,      :kind_of => String,         :default => '0755'
+attribute :namenode,  :kind_of => String,         :default => node['hadoop']['core_site']['fs.defaultFS']
 attribute :recursive, :equal_to => [true, false], :default => false

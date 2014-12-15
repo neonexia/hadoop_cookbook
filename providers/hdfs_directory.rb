@@ -29,7 +29,3 @@
 # 1
 # $ hdfs dfs -ls / | grep tmp
 # drwxrwxrwt   - hdfs  supergroup          0 2014-04-01 20:39 /tmp
-
-# http://docs.opscode.com/resource_directory.html
-# Actions: :create :delete
-# Attributes: group mode owner path(defaults to name) recursive
