@@ -36,7 +36,7 @@ if node['hbase'].key?('hbase_site') && node['hbase']['hbase_site'].key?('hbase.r
     user 'hdfs'
     group 'hdfs'
     not_if "hdfs dfs -test -d #{node['hbase']['hbase_site']['hbase.rootdir']}", :user => 'hdfs'
-    action :nothing
+    action :run
   end
 elsif node['hbase']['hbase_site']['hbase.rootdir'] =~ %r{^/|^file://}
   directory node['hbase']['hbase_site']['hbase.rootdir'].gsub('file://', '') do
