@@ -185,7 +185,7 @@ end # HDP 2.1 hack
 service 'zookeeper-server' do
   status_command 'service zookeeper-server status'
   supports [:restart => true, :reload => false, :status => true]
-  action :nothing
+  action :start
 end
 
 # Update alternatives to point to our configuration
