@@ -68,7 +68,7 @@ end
 
 execute 'hdfs-namenode-format' do
   command 'hdfs namenode -format -nonInteractive' + (node['hadoop']['force_format'] ? ' -force' : '')
-  action :nothing
+  action :run
   group 'hdfs'
   user 'hdfs'
 end
@@ -76,5 +76,5 @@ end
 service 'hadoop-hdfs-namenode' do
   status_command 'service hadoop-hdfs-namenode status'
   supports [:restart => true, :reload => false, :status => true]
-  action :nothing
+  action :start
 end
